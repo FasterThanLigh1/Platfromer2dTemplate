@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 1965102929}
   - component: {fileID: 1965102932}
   - component: {fileID: 1965102931}
-  - component: {fileID: 1965102933}
+  - component: {fileID: 1965102934}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1259,7 +1259,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1965102933
+--- !u!114 &1965102934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1268,7 +1268,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965102928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fab3803012969f4e934b7a8a5f08f8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 73369d097a7e4d54cbd5052ddd743856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  jumpForce: 10
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
