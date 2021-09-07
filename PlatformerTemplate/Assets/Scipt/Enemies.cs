@@ -7,11 +7,13 @@ public class Enemies : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] float speed;
     protected Rigidbody2D rb;
-    int direction = 1;
+    protected Collider2D colli;
+    protected int direction = 1;
     [SerializeField] float timer = 3f;
     [SerializeField] float timeFlow;
     void Start()
     {
+        colli = GetComponent<Collider2D>();
         timeFlow = timer;
         rb = GetComponent<Rigidbody2D>();
     }

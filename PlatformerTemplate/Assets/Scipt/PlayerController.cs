@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody2D rb;
     [SerializeField] int hp = 3;
+    //Encapsulation
     public int hpProperty
     {
         get{ return hp; }
