@@ -5,16 +5,35 @@ using UnityEngine;
 public class Enemies : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] float speed;
+    protected Rigidbody2D rb;
+    int direction = 1;
+    [SerializeField] float timer = 3f;
+    [SerializeField] float timeFlow;
     void Start()
     {
-        
+        timeFlow = timer;
+        rb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         
+        if(timeFlow < 1)
+        {
+            direction *= -1;
+            transform.localScale = new Vector3(-direction, 1, 1);
+            timeFlow = timer;
+        }else
+        {
+            timeFlow -= Time.deltaTime;
+        }   
     }
+    void FixedUpdate()
+    {
+        Move();
+    }
+
+    // Update is called once per frame
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player"))
@@ -23,5 +42,9 @@ public class Enemies : MonoBehaviour
             p.hpProperty -= 1;
             print("Collide and hp is " + p.hpProperty);
         }
+    }
+    protected virtual void Move()
+    {
+        rb.velocity = new Vector2(speed * direction * Time.deltaTime, rb.velocity.y);
     }
 }
