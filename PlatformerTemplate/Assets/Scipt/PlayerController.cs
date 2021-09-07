@@ -6,22 +6,34 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D rb;
+    [SerializeField] int hp = 3;
+    public int hpProperty
+    {
+        get{ return hp; }
+        set{ hp = value; }
+    }
+    [SerializeField] float jumpForce = 10.0f;
+    [SerializeField] float speed = 10.0f;
+    [SerializeField] LayerMask ground;
+    Collider2D collider;
     float horizontal;
-    [SerializeField] float speed = 10.0f; 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
+
     void Update()
     {
-       
-        //rb.AddForce(Vector2.right * horizontal * speed);
-    }
-    void FixedUpdate()
-    {
         horizontal = Input.GetAxis("Horizontal");
-        rb.velocity = Vector2.right * horizontal * speed * Time.fixedDeltaTime;
+        if(Input.GetButtonDown("Jump") && collider.IsTouchingLayers(ground))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.deltaTime);
+        }
+        rb.velocity = new Vector2(speed * horizontal * Time.deltaTime, rb.velocity.y);
     }
+    
+    
 }
